@@ -1,0 +1,64 @@
+\documentclass[ngerman,
+    %BCOR%Bindungskorrektur,
+    ]{WissTemplate}
+    %\PassOptionsToPackage{usenames,dvipsnames}{xcolor}
+\usepackage{
+    datetime,
+    ulem,
+    tikz, %grafiken generieren
+    varwidth, %anpassen von seitengrößen
+    enumitem,
+    longtable,
+    pgfplots, %diagramme
+    caption, %tabbellen beschreibungen
+    url,
+    listings %code blöcke
+    }
+\usetikzlibrary{positioning,shapes,shadows,arrows, arrows.meta, calc,
+    automata, petri %petri netze
+    }
+%\usepackage[a4paper,left=27mm,right=27mm, top=1cm, bottom=2cm]{geometry}
+
+\renewcommand{\name}{Tom Meyer}
+\renewcommand{\strasse}{Thomas-Müntzer-Platz 64}
+\renewcommand{\stadt}{18057 Rostock}
+\renewcommand{\matrikel}{Matrikel-Nr.: 8200839}
+\renewcommand{\course}{Informatik}
+\renewcommand{\betreuer}{Karsten Wolf}
+\renewcommand{\Titel}{Verifikation von Petrinetzen}
+\renewcommand{\Type}{Literaturarbeit } %Bachelorarbeit, Projektarbeit, Literaturarbeit, etc.
+
+\definecolor{verylightgray}{rgb}{0.95,0.95,0.95}
+\tolerance=1000 
+\hyphenpenalty=1000
+
+\begin{document}
+
+\include{chapters/titlepage}
+\frontmatter
+\include{chapters/00abstract}
+\tableofcontents
+\newpage
+\markright{\nomname}
+\printnomenclature
+%\addcontentsline{toc}{chapter}{\nomname}
+% Abbildungsverzeichnis
+%\newpage
+%\addcontentsline{toc}{chapter}{\listfigurename}
+%\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+%\listoffigures
+%\newpage
+% Tabellenverzeichnis
+%\addcontentsline{toc}{chapter}{\listtablename}
+%\listoftables
+\mainmatter
+
+\include{chapters/01introduction}
+\include{chapters/02Petrinetze}
+\include{chapters/03Verifikation}
+\include{chapters/04relatedWork}
+\include{chapters/05conclusion}
+\bibliography{IEEEabrv,literature}
+\bibliographystyle{IEEEtran}
+
+\end{document}

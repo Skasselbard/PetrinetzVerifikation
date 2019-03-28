@@ -1,0 +1,20 @@
+% !TEX root = ../main.tex
+\chapter{Einleitung}
+\label{introduction}
+Eines der ältesten und verbreitetsten Modelle zur Beschreibung von, sowohl sequentiellen, als auch parallelen Rechnern, ist der endliche Automat.
+
+Automaten eigenen sich um Aussagen über bestimmte Eigenschaften der beschriebenen Systeme zu treffen.
+Eine erschöpfende Analyse wird jedoch bei größeren Modellen immer schwieriger, da die Anzahl der möglichen Zustände die angenommen werden können, gewöhnlich exponentiell mit der Größe des Sytems wächst.
+Dieses Phänomen wird als Zustandsexplosion bezeichnet und ist eines der größten Hindernisse im Gebiet der Softwareverifikation.
+
+Gerade bei Verteilten Systemen ist es aber selten nötig Auswirkungen von Aktionen über den gesamten Zustandsraum zu prüfen.
+Viele Aktionen haben nur einen sehr lokalen Einfluss und können nur bestimmte Teile des Zustands verändern.
+Die Konstruktion des kompletten Zustandsraums ist also nicht unbedingt notwendig um bestimmte Eigenschaften zu überprüfen.
+
+Das war auch einer der Gedanken die Carl Adam Petri umtrieb und ihn dazu inspirierte einen anderen Fromalismus zur Beschreibung von Computern zu entwickeln.
+Die nach ihm benannten Petri Netze.
+
+Petri Netze haben einigie interessante Eigenschaften die man in der Verifikation gut ausnutzen kann.
+Bevor wir allerdings zur Verifikation mit Petri netzen kommen, sehen wir uns im folgenden Kapitel diese Eigenschaften etwas genauer an.
+
+% Globale Zeit (gemeinsamer Takt) ab einer gewissen Komplexität nicht adäquat
