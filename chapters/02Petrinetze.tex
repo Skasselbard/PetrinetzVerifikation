@@ -2,12 +2,43 @@
 
 
 \chapter{Petri Netze}
+Petrinetze sind Bipartiete gerichtete Grafen mit Kanten.
+D.h. sie bestehen aus zwei Disjunkten Knotenmengen -- \textbf{Stellen} und \textbf{Transitionen} -- die nur mit der jeweils anderen Menge durch Kanten verbunden sind.
 
-kann rückwärts feuern\\
+Die Stellen (oder auch Plätze) können mit einer beliebigen Menge an \textbf{Marken} belegt sein.
+Die Menge der Marken auf allen Stellen repräsentiert den aktuellen Zustand des Systems und wird \textbf{Markierung} genannt.
 
-invarianten\\
+Transitionen repräsentieren die möglichen \textbf{Aktionen} des Systems. 
+Eine Transition ist \textbf{aktiviert}, wenn auf allen Stellen die mit eingehenden kanten verbunden sind, mindestens eine Marke liegt (bzw. eine Menge entsprechend der Kantengewichte).
+Eine \textbf{aktivierte} Transition kann zu einem beliebigen Zeitpunkt \textbf{feuern}.
+
+Feuert eine Transition werden auf allen Stellen, die mit eingehenden Kanten verbunden sind, Marken \textbf{konsumiert} und auf allen Stellen die mit einer Ausgehenden Kante verbunden sind werden Marken \textbf{produziert}.
+Auch hier ist die Menge der konsumierten und produzierten Marken gleich des Kantengewichts der dazugehörigen Kante.
+
+Somit kann ein Petrinetz als Sechs-Tupel [S, T, F, W, m\textsubscript{0}] definiert werden mit:
+\begin{itemize}
+    \item S - Menge der Stellen
+    \item T - Menge der Transitionen
+    \item F $\subseteq \{ S \times T \} \cup \{ T \times S \}$ - Menge der Kanten
+    \item W: $ F \to \mathbb{N} \setminus \{0\}$ - Menge der Kantengewichte
+    \item m\textsubscript{0}: $S \to \mathbb{N} \cup \{0\}$ - Anfangsmarkierung der Stellen
+\end{itemize}
+Auf dieser Definition aufbauend können wie erwähnt einige wichtige Eigenschaften hergeleitet werden.
+Die Details sind außerhalb des Umfangs dieser Arbeit, deswegen beschränken wir uns auf eine Informale Beschreibung der drei Wichtigsten.
+
+\section{Linearität des Schaltens}
+Petrinetze lassen sich als lineare Gleichungssysteme darstellen. 
+Dadurch können die Regeln der linearen Algebra auf das System anwenden. 
+
+Mittels der \textbf{Zustandsgleichung} kann durch einfache Lösung des Gleichungssystems z.B. bereits eine Aussage darüber getroffen werden welche Markierung \texttt{nicht} von der Anfangsmarkierung aus erreicht werden können.
+
+Außerdem lassen sich durch Stellen- und Transitionsinvarianten Aussagen über die Lebendigkeit und Beschränktheit des Systems treffen.
+Ob ein System Deadlocks hat ist z.B. eng mit der Lebendigkeit des Netzes verbunden.
+
+\section{Monotonie des Schaltens}
+Im Gegensatz zu anderen Formalismen 
+
 
 monotonie -> Ein weg den man in einer markierung gehen kann, kann man auch in einer größeren markierung gehen\\
-linearität - einige eigenschaften lassen sich mit linearer algebra (in linearen gleichungssystemen) berechnen\\
 localität Aktionen betreffen jeweils nur einen Teil des Zustandsraumes “Lokalitätsprinzip" C.A.Petri(Diss.1962)\\
 -> kann man beim explizieten modellchecking ausnutzen\\
