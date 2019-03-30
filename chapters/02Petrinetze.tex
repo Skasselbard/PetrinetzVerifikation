@@ -2,14 +2,14 @@
 
 
 \chapter{Petri-Netze}
-Petri-Netze sind Bipartite gerichtete Grafen mit Kanten.
+Petri-Netze sind Bipartite Grafen mit gerichteten Kanten.
 D.h. sie bestehen aus zwei Disjunkten Knotenmengen -- \textbf{Stellen} und \textbf{Transitionen} -- die nur mit der jeweils anderen Menge durch Kanten verbunden sind.
 
 Die Stellen (oder auch Plätze) können mit einer beliebigen Menge an \textbf{Marken} belegt sein.
 Die Menge der Marken auf allen Stellen repräsentiert den aktuellen Zustand des Systems und wird \textbf{Markierung} genannt.
 
 Transitionen repräsentieren die möglichen \textbf{Aktionen} des Systems. 
-Eine Transition ist \textbf{aktiviert}, wenn auf allen Stellen die mit eingehenden kanten verbunden sind, mindestens eine Marke liegt (bzw. eine Menge entsprechend der Kantengewichte).
+Eine Transition ist \textbf{aktiviert}, wenn auf allen Stellen die mit eingehenden Kanten verbunden sind, mindestens eine Marke liegt (bzw. eine Menge entsprechend der Kantengewichte).
 Eine \textbf{aktivierte} Transition kann zu einem beliebigen Zeitpunkt \textbf{feuern}.
 
 Feuert eine Transition werden auf allen Stellen, die mit eingehenden Kanten verbunden sind, Marken \textbf{konsumiert} und auf allen Stellen, die mit einer Ausgehenden Kante verbunden sind werden Marken \textbf{produziert}.
@@ -23,7 +23,7 @@ Somit kann ein Petri-Netz als Sechs-Tupel [S, T, F, W, m\textsubscript{0}] defin
     \item W: $ F \to \mathbb{N} \setminus \{0\}$ - Menge der Kantengewichte
     \item m\textsubscript{0}: $S \to \mathbb{N} \cup \{0\}$ - Anfangsmarkierung der Stellen
 \end{itemize}
-Auf dieser Definition aufbauend können wie erwähnt einige wichtige Eigenschaften hergeleitet werden.
+Auf dieser Definition aufbauend können einige wichtige Eigenschaften hergeleitet werden.
 Die Details sind außerhalb des Umfangs dieser Arbeit, deswegen beschränken wir uns auf eine Informale Beschreibung der drei Wichtigsten.
 
 \section{Linearität des Schaltens}
@@ -37,11 +37,11 @@ Ob ein System Deadlocks hat, ist z.B. eng mit der Lebendigkeit des Netzes verbun
 
 \section{Monotonie des Schaltens}
 Im Gegensatz zu einigen anderen Formalismen sind Petri-Netze frei von Seiteneffekten.
-Aus diesem Grund lässt sich, mit dem Wissen der gemachten Aktionen und dem aktuellen Zustand, die vergangenen Zustände berechnen.
+Aus diesem Grund lassen sich, mit dem Wissen der gemachten Aktionen und dem aktuellen Zustand, die vergangenen Zustände berechnen.
 In Problemen wo die Zustandsabfolge von Interesse ist, kann der benötigte Speicher dadurch deutlich reduziert werden.
 
 Eine weitere Eigenschaft die damit zusammenhängt, ist die Überdeckung von Markierungen.
-Wenn von einer Markierung eine echt größere erreicht werden kann -- also eine Markierung, die auf jeder Stelle mehr Marken hält -- so kann der Weg dahin wiederholt werden, um noch mehr Marken zu generieren.
+Wenn von einer Markierung eine echt größere erreicht werden kann -- also eine Markierung, die auf jeder Stelle mehr (oder gleich viele) Marken hält -- so kann der Weg dahin wiederholt werden, um noch mehr Marken zu generieren.
 Die neue Markierung überdeckt damit die Alte.
 
 Da in der neuen Markierung mindestens dieselben Transitionen aktiviert sind wie in der vorherigen, ist es möglich eine unendliche Menge an Marken anzusammeln.
@@ -50,15 +50,15 @@ Man muss lediglich denn selben Weg wieder und wieder schalten.
 So lassen sich Aussagen über die Beschränktheit des Systems machen und eine ganze Klasse von Markierungen zusammenfassen.
 
 \section{Lokalität des Schaltens}
-Die letzte wichtige Eigenschaft, die hier erwähnt werden soll, ist die eingangs erwähnte Lokalität von Petri-Netzen.
+Die letzte wichtige Eigenschaft, ist die eingangs erwähnte Lokalität von Petri-Netzen.
 Das Prinzip auf dem Petri seinen Formalismus aufgebaut hat.
 
 In Petri-Netzen lässt sich formal erkennen, ob Aktionen unabhängig voneinander sind.
 Bei unabhängigen Aktionen spielt es keine Rolle in welcher Reihenfolge sie ausgeführt werden.
-Ob sich jemand erst die linke Socke anzieht und dann die Rechte ändert nicht das Ergebnis im Vergleich zur umgekehrten Vorgehensweise 
-(wohingegen die Reihenfolge von Socke und Schuh eine unterschiedliche Reaktion von Kollegen hervorrufen dürfte).
+Ob sich jemand erst die linke Socke anzieht und dann die Rechte, ändert nicht das Ergebnis im Vergleich zur umgekehrten Vorgehensweise 
+(wohingegen die Reihenfolge von Socke und Schuh unterschiedliche Reaktionen hervorrufen dürfte).
 
-Wenn es keine Rolle spielt in welcher Reihenfolge wir Aktionen ausführen, können wir uns eine aussuchen (und die andere ignorieren).
+Wenn es keine Rolle spielt in welcher Reihenfolge wir Aktionen ausführen, können wir uns eine aussuchen (und die anderen ignorieren).
 Auf diese Weise können wir die Menge der möglichen Aktionen reduzieren.
 
 Da es gerade in verteilten Systemen viele parallele (und damit unabhängige) Aktionen gibt, ist dieser Ansatz gerade dort eine sehr effektive Möglichkeit der Zustandsexplosion entgegenzuwirken.

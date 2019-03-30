@@ -16,10 +16,10 @@ Verifikation in Form von explizitem Model Checking arbeitet auf dem Zustandsraum
 Bei dieser Methode werden solange Zustände aufgedeckt bis eine Eigenschaft verifiziert oder falsifiziert ist... Oder bis der Model Checker aus dem Speicher läuft.
 
 Hier ist es also wichtig die Anzahl aufgedeckter Zustände niedrig zu halten.
-Eine unangenehme Eigenheit einiger Systeme ist jedoch das der Zustandsraum nicht einfach nur explodiert, sondern von vornherein unendlich ist -- Ärgerlich.
+Eine unangenehme Eigenheit einiger Systeme ist jedoch das der Zustandsraum nicht einfach nur explodiert, sondern von vornherein unendlich ist -- ärgerlich.
 Ein einfaches Beispiel wäre ein Programm, das die natürlichen Zahlen aufzählt.
 
-Glücklicherweise bietet uns die Monotonie des Schaltens hier eine Möglichkeit, eine unendliche Menge an Zuständen in eine endliche Menge von Speicher abzulegen.
+Glücklicherweise bietet uns die Monotonie des Schaltens hier eine Möglichkeit, eine unendliche Menge an Zuständen, in eine endliche Menge von Speicher abzulegen.
 
 Statt alle erreichbaren Zustände aufzulisten, können wir aufhören, wenn wir feststellen das eine Markierung, eine andere überdeckt (siehe \cite{?2.2}).
 So brauchen wir nur noch Speichern, dass wir einen Zustand gefunden haben der unbeschränkt ist.
@@ -30,9 +30,9 @@ Die passende Datenstruktur hierfür heißt Überdeckungsgraph und ist immer endl
 Für einige Eigenschaften brauchen wir allerdings überhaupt keine Zustände aufzudecken.
 Insbesondere für die Erreichbarkeit von Zuständen können wir die Linearität des Schaltens \cite{2.1} für unsere Zwecke nutzen.
 
-Mit hilfe der linearen Algebra und der "Zustandsgleichung" können wir nur durch Lösen eines linearen Gleichungssystems erkennen, ob ein Zustand unerreichbar ist.
+Mit hilfe der linearen Algebra und der Zustandsgleichung können wir nur durch Lösen eines linearen Gleichungssystems erkennen, ob ein Zustand unerreichbar ist.
 Das erfolgreiche Lösen des Gleichungssystems ist zwar nur eine notwendige Bedingung zur Erreichbarkeit.
-Aber durch Nutzung von meist sehr effizienten Mathematik-Algorithmen, ist es oft Sinnvoll, zunächst herauszufinden, ob überhaupt die Möglichkeit besteht einen Zustand zu erreichen. Danach kann man immer noch den vergleichsweise großen Zustandsraum aufdecken.
+Aber durch Nutzung von meist sehr effizienten Mathematik-Algorithmen, ist es oft Sinnvoll, zunächst herauszufinden ob überhaupt die Möglichkeit besteht einen Zustand zu erreichen. Danach kann man immer noch den vergleichsweise großen Zustandsraum aufdecken.
 
 \section{Zustandsamnesie mit Sweepline}
 Die Linearität des Schaltens kommt uns in einer weiteren Methode zu Gute.
@@ -60,7 +60,7 @@ Standardmäßig kann ein Model Checker diese Information jedoch nicht nutzen und
 Durch das Erkennen von symmetrischen Strukturen im Petri-Netz können wir unsere Rechenleistung jedoch für weniger repetitive Aufgaben nutzen und neben Zeit wieder Speicherplatz einsparen.
 
 \section{Effizienz durch Ordnung mit Partial-Order-Reduction}
-Partial-Order-Reduction ist eine weitere Technik um den Zustandsraum zu reduzieren. 
+Partial-Order-Reduction ist eine weitere Technik um den Zustandsraum durch die Lokalitätseigenschat zu reduzieren. 
 Und wieder wird die Unabhängigkeit von Aktionen ausgenutzt, die besonders durch Parallele Systeme eingeführt wird.
 
 Mit Hilfe von Stubborn-Sets können Zustandsfolgen gefunden werden, die die gleichen Aktionen (in unterschiedlicher Reihenfolge) nutzen und denselben Endzustand erreichen.
