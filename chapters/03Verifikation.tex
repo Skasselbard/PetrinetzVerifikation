@@ -21,14 +21,14 @@ Ein einfaches Beispiel wäre ein Programm, das die natürlichen Zahlen aufzählt
 
 Glücklicherweise bietet uns die Monotonie des Schaltens hier eine Möglichkeit, eine unendliche Menge an Zuständen, in eine endliche Menge von Speicher abzulegen.
 
-Statt alle erreichbaren Zustände aufzulisten, können wir aufhören, wenn wir feststellen das eine Markierung, eine andere überdeckt (siehe \cite{?2.2}).
+Statt alle erreichbaren Zustände aufzulisten, können wir aufhören, wenn wir feststellen das eine Markierung, eine andere überdeckt (siehe \ref{monoton}).
 So brauchen wir nur noch Speichern, dass wir einen Zustand gefunden haben der unbeschränkt ist.
 
 Die passende Datenstruktur hierfür heißt Überdeckungsgraph und ist immer endlich groß.
 
 \section{Ein Blick in die Zukunft mit der Zustandsgleichung}
 Für einige Eigenschaften brauchen wir allerdings überhaupt keine Zustände aufzudecken.
-Insbesondere für die Erreichbarkeit von Zuständen können wir die Linearität des Schaltens \cite{2.1} für unsere Zwecke nutzen.
+Insbesondere für die Erreichbarkeit von Zuständen können wir die Linearität des Schaltens (\ref{linear}) für unsere Zwecke nutzen.
 
 Mit hilfe der linearen Algebra und der Zustandsgleichung können wir nur durch Lösen eines linearen Gleichungssystems erkennen, ob ein Zustand unerreichbar ist.
 Das erfolgreiche Lösen des Gleichungssystems ist zwar nur eine notwendige Bedingung zur Erreichbarkeit.
@@ -45,7 +45,7 @@ Wenn wir zusätzlich feststellen, dass es keine Möglichkeit mehr gibt, diese ve
 Die frei gewordenen Ressourcen können so für die weitere Suche recycelt werden.
 
 \section{Symmetrie -- nicht nur eine Frage der Optik}
-Die Graphentheorie und die Lokalität des Schaltens\cite{2.3} unterstützen uns um ein weiteres Mal den Zustandsraum, den wir aufdecken müssen, zu reduzieren.
+Die Graphentheorie und die Lokalität des Schaltens (\ref{lokal}) unterstützen uns um ein weiteres Mal den Zustandsraum, den wir aufdecken müssen, zu reduzieren.
 
 Da Petri-Netze selbst als Graph aufgefasst werden können, können auch Graphenalgorithmen  und Konzepte auf sie angewendet werden. 
 Besonders nützlich sind hier die Graphautomorphismen bzw. die Symmetrie.
