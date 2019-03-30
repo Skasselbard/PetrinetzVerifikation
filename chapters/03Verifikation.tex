@@ -1,11 +1,77 @@
 % !TEX root = ../main.tex
 \chapter{Verifikation}
-explizit -> zustandsraum suche\\
-zustandsraum klein halten\\
-ünendlich -> überdeckungsgraph (monotonie)\\
-strtukturtheorie -> Zustandsgleichung (linearität)\\
-transitionsinvarianten (linearität)\\
-sweepline (linearität)\\
-symmetrie (localität)\\
-stubborn sets (localität)\\
-kann man teilweise zusammenführen für noch bessere ergebnisse\\ 
+Petri Netze eignen sich gut, um verteilte Systeme zu modellieren.
+Solche Systeme mit einer hohen Anzahl an parallel ausführbaren Aktionen sind allerdings besonders von dem Problem der Zustandsexplosion betroffen.
+
+Trotzdem ist es in einigen Anwendungsfällen wichtig, dass das System gewisse Eigenschaften erfüllt.
+Die Softwareverifikation ist ein Bereich der Informatik, der sich mit diesem Problem beschäftigt.
+
+Auch Systeme, die als Petri-Netz modelliert sind lassen sich verifizieren.
+Damit dies effizient ablaufen kann und z.B. die Auswirkungen der Zustandsexplosion gering gehalten werden können, gibt es einige Methoden, die die Eigenschaften, die im vorherigen Kapitel vorgestellt wurden, ausnutzen.
+
+Einen Überblick über einige wichtige sehen wir uns in diesem Kapitel an.
+
+\section{Endlichkeit durch den Überdeckungsgraph}
+Verifikation in Form von explizitem Model Checking arbeitet auf dem Zustandsraum eines Systems.
+Bei dieser Methode werden solange Zustände aufgedeckt bis eine Eigenschaft verifiziert oder falsifiziert ist... Oder bis der Model Checker aus dem Speicher läuft.
+
+Hier ist es also wichtig die Anzahl aufgedeckter Zustände niedrig zu halten.
+Eine unangenehme Eigenheit einiger Systeme ist jedoch das der Zustandsraum nicht einfach nur explodiert, sondern von vornherein unendlich ist -- Ärgerlich.
+Ein einfaches Beispiel wäre ein Programm, das die natürlichen Zahlen aufzählt.
+
+Glücklicherweise bietet uns die Monotonie des Schaltens hier eine Möglichkeit, eine unendliche Menge an Zuständen in eine endliche Menge von Speicher abzulegen.
+
+Statt alle erreichbaren Zustände aufzulisten, können wir aufhören, wenn wir feststellen das eine Markierung, eine andere überdeckt (siehe \cite{?2.2}).
+So brauchen wir nur noch Speichern, dass wir einen Zustand gefunden haben der unbeschränkt ist.
+
+Die passende Datenstruktur hierfür heißt Überdeckungsgraph und ist immer endlich groß.
+
+\section{Ein Blick in die Zukunft mit der Zustandsgleichung}
+Für einige Eigenschaften brauchen wir allerdings überhaupt keine Zustände aufzudecken.
+Insbesondere für die Erreichbarkeit von Zuständen können wir die Linearität des Schaltens \cite{2.1} für unsere Zwecke nutzen.
+
+Mit hilfe der linearen Algebra und der "Zustandsgleichung" können wir nur durch Lösen eines linearen Gleichungssystems erkennen, ob ein Zustand unerreichbar ist.
+Das erfolgreiche Lösen des Gleichungssystems ist zwar nur eine notwendige Bedingung zur Erreichbarkeit.
+Aber durch Nutzung von meist sehr effizienten Mathematik-Algorithmen, ist es oft Sinnvoll, zunächst herauszufinden, ob überhaupt die Möglichkeit besteht einen Zustand zu erreichen. Danach kann man immer noch den vergleichsweise großen Zustandsraum aufdecken.
+
+\section{Zustandsamnesie mit Sweepline}
+Die Linearität des Schaltens kommt uns in einer weiteren Methode zu Gute.
+Wieder um den Zustandsraum zu reduzieren. Bzw. um die benötigten Ressourcen zum Speichern der Zustände zu reduzieren.
+
+Durch einen Fortschrittswert können wir Zustände untereinander in Beziehung setzen.
+Oft sind neue Zustände nicht mehr direkt abhängig von älteren zuvor aufgedeckten.
+Wenn wir zusätzlich feststellen, dass es keine Möglichkeit mehr gibt, diese vergangenen Zustände zu erreichen, können wir diese auch ohne schlechtes Gewissen vergessen.
+
+Die frei gewordenen Ressourcen können so für die weitere Suche recycelt werden.
+
+\section{Symmetrie -- nicht nur eine Frage der Optik}
+Die Graphentheorie und die Lokalität des Schaltens\cite{2.3} unterstützen uns um ein weiteres Mal den Zustandsraum, den wir aufdecken müssen, zu reduzieren.
+
+Da Petri-Netze selbst als Graph aufgefasst werden können, können auch Graphenalgorithmen  und Konzepte auf sie angewendet werden. 
+Besonders nützlich sind hier die Graphautomorphismen bzw. die Symmetrie.
+
+Teile des Petri-Netzes können sich zu anderen Teilen symmetrisch verhalten. 
+D.h. wenn ein Teil des Petri-Netzes bestimmte Aktionen ausführen kann, kann es auch ein anderer Teil der sich zum ersten symmetrisch verhält.
+
+Solche Symmetrien lassen sich besonders in verteilten Systemen beobachten, die das gleiche Programm auf verschiedenen (oder allen) Knoten ausführen.
+Hier kann offensichtlich jeder Knoten exakt die gleichen Aktionen ausführen wie alle anderen.
+
+Standardmäßig kann ein Model Checker diese Information jedoch nicht nutzen und müsste trotzdem das gesamte System überprüfen.
+Durch das Erkennen von symmetrischen Strukturen im Petri-Netz können wir unsere Rechenleistung jedoch für weniger repetitive Aufgaben nutzen und neben Zeit wieder Speicherplatz einsparen.
+
+\section{Effizienz durch Ordnung mit Partial-Order-Reduction}
+Partial-Order-Reduction ist eine weitere Technik um den Zustandsraum zu reduzieren. 
+Und wieder wird die Unabhängigkeit von Aktionen ausgenutzt, die besonders durch Parallele Systeme eingeführt wird.
+
+Mit Hilfe von Stubborn-Sets können Zustandsfolgen gefunden werden, die die gleichen Aktionen (in unterschiedlicher Reihenfolge) nutzen und denselben Endzustand erreichen.
+Hier ist es im Sinne der Verifikation wieder egal, welche Reihenfolge gewählt wird.
+Das Schalten eines Pfads ist genug um (passende) Eigenschaften zu untersuchen.
+
+\section{Das Ganze ist mehr als die Summe seiner Teile}
+Die meisten der zuvor genannten Techniken, haben das Ziel die Menge der Zustände zu reduzieren und dieses immer wieder erwähnte Problem der Zustandsexplosion in den Griff zu bekommen.
+Die einzelnen Techniken sind allerdings nicht immer auf jedes Problem anwendbar. Oft erhalten sie nur Teile der Netzeigenschaften.
+
+Angenehmer weise lassen sich die Techniken untereinander Kombinieren um die Menge der zu untersuchenden Zustände auf ein Minimum zu reduzieren.
+
+Viele Probleme der Praxis lassen sich so auch ohne Kühlschrankgroße spezial Rechner lösen.
+Soweit, dass Systeme oft interaktiv zu überprüfen sind.

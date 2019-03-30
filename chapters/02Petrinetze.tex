@@ -1,8 +1,8 @@
 % !TEX root = ../main.tex
 
 
-\chapter{Petri Netze}
-Petrinetze sind Bipartiete gerichtete Grafen mit Kanten.
+\chapter{Petri-Netze}
+Petri-Netze sind Bipartite gerichtete Grafen mit Kanten.
 D.h. sie bestehen aus zwei Disjunkten Knotenmengen -- \textbf{Stellen} und \textbf{Transitionen} -- die nur mit der jeweils anderen Menge durch Kanten verbunden sind.
 
 Die Stellen (oder auch Plätze) können mit einer beliebigen Menge an \textbf{Marken} belegt sein.
@@ -12,10 +12,10 @@ Transitionen repräsentieren die möglichen \textbf{Aktionen} des Systems.
 Eine Transition ist \textbf{aktiviert}, wenn auf allen Stellen die mit eingehenden kanten verbunden sind, mindestens eine Marke liegt (bzw. eine Menge entsprechend der Kantengewichte).
 Eine \textbf{aktivierte} Transition kann zu einem beliebigen Zeitpunkt \textbf{feuern}.
 
-Feuert eine Transition werden auf allen Stellen, die mit eingehenden Kanten verbunden sind, Marken \textbf{konsumiert} und auf allen Stellen die mit einer Ausgehenden Kante verbunden sind werden Marken \textbf{produziert}.
+Feuert eine Transition werden auf allen Stellen, die mit eingehenden Kanten verbunden sind, Marken \textbf{konsumiert} und auf allen Stellen, die mit einer Ausgehenden Kante verbunden sind werden Marken \textbf{produziert}.
 Auch hier ist die Menge der konsumierten und produzierten Marken gleich des Kantengewichts der dazugehörigen Kante.
 
-Somit kann ein Petrinetz als Sechs-Tupel [S, T, F, W, m\textsubscript{0}] definiert werden mit:
+Somit kann ein Petri-Netz als Sechs-Tupel [S, T, F, W, m\textsubscript{0}] definiert werden mit:
 \begin{itemize}
     \item S - Menge der Stellen
     \item T - Menge der Transitionen
@@ -27,18 +27,40 @@ Auf dieser Definition aufbauend können wie erwähnt einige wichtige Eigenschaft
 Die Details sind außerhalb des Umfangs dieser Arbeit, deswegen beschränken wir uns auf eine Informale Beschreibung der drei Wichtigsten.
 
 \section{Linearität des Schaltens}
-Petrinetze lassen sich als lineare Gleichungssysteme darstellen. 
+Petri-Netze lassen sich als lineare Gleichungssysteme darstellen. 
 Dadurch können die Regeln der linearen Algebra auf das System anwenden. 
 
-Mittels der \textbf{Zustandsgleichung} kann durch einfache Lösung des Gleichungssystems z.B. bereits eine Aussage darüber getroffen werden welche Markierung \texttt{nicht} von der Anfangsmarkierung aus erreicht werden können.
+Mittels der \textbf{Zustandsgleichung} kann durch einfache Lösung des Gleichungssystems z.B. bereits eine Aussage darüber getroffen werden, welche Markierung \texttt{nicht} von der Anfangsmarkierung aus erreicht werden können.
 
 Außerdem lassen sich durch Stellen- und Transitionsinvarianten Aussagen über die Lebendigkeit und Beschränktheit des Systems treffen.
-Ob ein System Deadlocks hat ist z.B. eng mit der Lebendigkeit des Netzes verbunden.
+Ob ein System Deadlocks hat, ist z.B. eng mit der Lebendigkeit des Netzes verbunden.
 
 \section{Monotonie des Schaltens}
-Im Gegensatz zu anderen Formalismen 
+Im Gegensatz zu einigen anderen Formalismen sind Petri-Netze frei von Seiteneffekten.
+Aus diesem Grund lässt sich, mit dem Wissen der gemachten Aktionen und dem aktuellen Zustand, die vergangenen Zustände berechnen.
+In Problemen wo die Zustandsabfolge von Interesse ist, kann der benötigte Speicher dadurch deutlich reduziert werden.
 
+Eine weitere Eigenschaft die damit zusammenhängt, ist die Überdeckung von Markierungen.
+Wenn von einer Markierung eine echt größere erreicht werden kann -- also eine Markierung, die auf jeder Stelle mehr Marken hält -- so kann der Weg dahin wiederholt werden, um noch mehr Marken zu generieren.
+Die neue Markierung überdeckt damit die Alte.
 
-monotonie -> Ein weg den man in einer markierung gehen kann, kann man auch in einer größeren markierung gehen\\
-localität Aktionen betreffen jeweils nur einen Teil des Zustandsraumes “Lokalitätsprinzip" C.A.Petri(Diss.1962)\\
--> kann man beim explizieten modellchecking ausnutzen\\
+Da in der neuen Markierung mindestens dieselben Transitionen aktiviert sind wie in der vorherigen, ist es möglich eine unendliche Menge an Marken anzusammeln.
+Man muss lediglich denn selben Weg wieder und wieder schalten.
+
+So lassen sich Aussagen über die Beschränktheit des Systems machen und eine ganze Klasse von Markierungen zusammenfassen.
+
+\section{Lokalität des Schaltens}
+Die letzte wichtige Eigenschaft, die hier erwähnt werden soll, ist die eingangs erwähnte Lokalität von Petri-Netzen.
+Das Prinzip auf dem Petri seinen Formalismus aufgebaut hat.
+
+In Petri-Netzen lässt sich formal erkennen, ob Aktionen unabhängig voneinander sind.
+Bei unabhängigen Aktionen spielt es keine Rolle in welcher Reihenfolge sie ausgeführt werden.
+Ob sich jemand erst die linke Socke anzieht und dann die Rechte ändert nicht das Ergebnis im Vergleich zur umgekehrten Vorgehensweise 
+(wohingegen die Reihenfolge von Socke und Schuh eine unterschiedliche Reaktion von Kollegen hervorrufen dürfte).
+
+Wenn es keine Rolle spielt in welcher Reihenfolge wir Aktionen ausführen, können wir uns eine aussuchen (und die andere ignorieren).
+Auf diese Weise können wir die Menge der möglichen Aktionen reduzieren.
+
+Da es gerade in verteilten Systemen viele parallele (und damit unabhängige) Aktionen gibt, ist dieser Ansatz gerade dort eine sehr effektive Möglichkeit der Zustandsexplosion entgegenzuwirken.
+
+All diese Eigenschaften lassen sich durch Methoden, die wir uns im nächsten Kapitel ansehen, wirksam ausnutzen um andere formale Eigenschaften zu verifizieren.
